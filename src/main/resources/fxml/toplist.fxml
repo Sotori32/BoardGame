@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="530.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ToplistController">
+   <children>
+      <TableView fx:id="tableview" editable="true" layoutX="6.0" layoutY="6.0" prefHeight="530.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="player" prefWidth="300.0" text="Player" />
+          <TableColumn fx:id="wins" minWidth="8.0" prefWidth="300.0" text="Number of wins" />
+        </columns>
+      </TableView>
+      <Button layoutX="650.0" layoutY="235.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="60.0" prefWidth="200.0" text="Main menu" AnchorPane.bottomAnchor="235.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="235.0" />
+   </children>
+</AnchorPane>

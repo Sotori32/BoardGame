@@ -1,0 +1,332 @@
+[
+  {
+    "player1": "a",
+    "player2": "b",
+    "winner": "a",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 17
+    },
+    "turns": 13
+  },
+  {
+    "player1": "hello there",
+    "player2": "General Kenobi",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 26
+  },
+  {
+    "player1": "General Kenobi",
+    "player2": "lol",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 20
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "Vader",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 22
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "Vader",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 19
+  },
+  {
+    "player1": "General Kenobi",
+    "player2": "Vader",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 24
+  },
+  {
+    "player1": "General Kenobi",
+    "player2": "Vader",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 27
+  },
+  {
+    "player1": "General Kenobi",
+    "player2": "Vader",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 21
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "Vader",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 30
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "Vader",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Vader",
+    "player2": "Han Solo",
+    "winner": "Vader",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Vader",
+    "player2": "Han Solo",
+    "winner": "Vader",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Vader",
+    "player2": "Han Solo",
+    "winner": "Vader",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Vader",
+    "player2": "Han Solo",
+    "winner": "Vader",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Han Solo",
+    "player2": "Windu",
+    "winner": "Han Solo",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Han Solo",
+    "player2": "a",
+    "winner": "Han Solo",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Han Solo",
+    "player2": "a",
+    "winner": "Han Solo",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Han Solo",
+    "player2": "a",
+    "winner": "Han Solo",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Windu",
+    "player2": "a",
+    "winner": "Windu",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Windu",
+    "player2": "a",
+    "winner": "Windu",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Windu",
+    "player2": "a",
+    "winner": "Windu",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Windu",
+    "player2": "a",
+    "winner": "Windu",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Han Solo",
+    "player2": "a",
+    "winner": "Han Solo",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "a",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "a",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "a",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "General Kenobi",
+    "player2": "a",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 17
+  },
+  {
+    "player1": "General Kenobi",
+    "player2": "Windu",
+    "winner": "General Kenobi",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 32
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "General Kenobi",
+    "winner": "tie",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 15
+  },
+  {
+    "player1": "Skywalker",
+    "player2": "General Kenobi",
+    "winner": "Skywalker",
+    "date": {
+      "year": 2021,
+      "month": 5,
+      "day": 18
+    },
+    "turns": 22
+  }
+]
