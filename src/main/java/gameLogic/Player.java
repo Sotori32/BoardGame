@@ -10,14 +10,19 @@ import java.util.ArrayList;
 public class Player {
 
     /**
-     * Pieces, that were taken by the player.
+     * Pieces that were taken by the player.
      */
-    ArrayList<Piece> taken;
+    private ArrayList<Piece> taken;
 
     /**
      * Name of the player.
      */
-    String name;
+    private String name;
+
+    /**
+     * The piece assigned to the player.
+     */
+    private Piece ownPiece;
 
     /**
      * Adds a piece to {@link #taken}.
@@ -28,27 +33,34 @@ public class Player {
     }
 
     /**
-     * Returns the number of pieces the player has with the given color.
-     * @param paint the color of the piece
-     * @return the number of pieces with the given color
+     * The list of pieces the player has taken.
+     * @param piece the pieces corresponding to the player
      */
-    public int getNumberOfColor(String paint){
-        int counter = 0;
-        for(Piece piece: taken){
-            if(piece.getPaint().equals(javafx.scene.paint.Paint.valueOf(paint)))
-                counter++;
-        }
-        return counter;
+    public Player(Piece piece) {
+        taken = new ArrayList<Piece>();
+        ownPiece = piece;
     }
 
     /**
-     * Constructor that creates a player with the given name.
-     * @param name the name of the player
+     * Sets the name of the player.
+     * @param name name of the player
      */
-    public Player(String name) {
+    public void setName(String name) {
         this.name = name;
-        taken = new ArrayList<Piece>();
     }
 
+    /**
+     * Tracks the score of the player.
+     * @return the current score of the player
+     */
+    public int getScore() {
+        int score = 0;
 
+        for (Piece piece : taken) {
+            if (piece.equals(ownPiece))
+                ++score;
+        }
+
+        return score;
+    }
 }

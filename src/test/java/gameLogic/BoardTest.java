@@ -6,15 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
-    Board board = new Board();
-    Piece red = new Piece(javafx.scene.paint.Paint.valueOf("red"), false);
-    Piece blue = new Piece(javafx.scene.paint.Paint.valueOf("blue"), false);
-    Piece green = new Piece(javafx.scene.paint.Paint.valueOf("green"), false);
+    Board board = new Board(null, null);
+    Piece red = new OnePiece(board);
+    Piece blue = new TwoPiece(board);
+    Piece green = new NeutralPiece(board);
 
     @Test
     void testTakePiece() {
 
-        Player player = new Player("test");
+        Player player = new Player(new OnePiece(null));
+        player.setName("test");
         assertThrows(IllegalArgumentException.class, () -> board.takePiece(-1,2,player));
         assertThrows(IllegalArgumentException.class, () -> board.takePiece(7,2,player));
         assertThrows(IllegalArgumentException.class, () -> board.takePiece(0,-1,player));
@@ -23,12 +24,12 @@ public class BoardTest {
 
     @Test
     void testGetPieceAt() {
-        assertEquals(green, board.getPieceAt(0,0));
-        assertEquals(green, board.getPieceAt(3,3));
-        assertEquals(blue, board.getPieceAt(0,1));
-        assertEquals(red, board.getPieceAt(1,0));
-        assertEquals(blue, board.getPieceAt(0,4));
-        assertEquals(red, board.getPieceAt(4,0));
+        assertTrue(green.equals(board.getPieceAt(0, 0)));
+        assertTrue(green.equals(board.getPieceAt(3, 3)));
+        assertTrue(blue.equals(board.getPieceAt(0,1)));
+        assertTrue(red.equals(board.getPieceAt(1,0)));
+        assertTrue(blue.equals(board.getPieceAt(0,4)));
+        assertTrue(red.equals(board.getPieceAt(4,0)));
 
     }
 }

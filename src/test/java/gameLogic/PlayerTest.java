@@ -6,16 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
 
-    Player player = new Player("test");
-    Piece red = new Piece(javafx.scene.paint.Paint.valueOf("red"), false);
-    Piece blue = new Piece(javafx.scene.paint.Paint.valueOf("blue"), false);
-    Piece green = new Piece(javafx.scene.paint.Paint.valueOf("green"), false);
+    Player player = new Player(new OnePiece(null));
+    Piece red = new OnePiece(null);
+    Piece blue = new TwoPiece(null);
+    Piece green = new NeutralPiece(null);
 
     @Test
     void testGetNumberOfColor() {
-        assertEquals(0, player.getNumberOfColor("red"));
-        assertEquals(0, player.getNumberOfColor("green"));
-        assertEquals(0, player.getNumberOfColor("blue"));
+        assertEquals(0, player.getScore());
 
 
         player.addPiece(red);
@@ -25,8 +23,12 @@ public class PlayerTest {
         player.addPiece(green);
         player.addPiece(blue);
 
-        assertEquals(3, player.getNumberOfColor("red"));
-        assertEquals(2, player.getNumberOfColor("green"));
-        assertEquals(1, player.getNumberOfColor("blue"));
+        assertEquals(3, player.getScore());
+
+        player.setOwnPiece(new TwoPiece(null));
+        assertEquals(1, player.getScore());
+
+        player.setOwnPiece(new NeutralPiece(null));
+        assertEquals(2, player.getScore());
     }
 }

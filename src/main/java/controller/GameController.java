@@ -1,9 +1,8 @@
 package controller;
 
+import gameLogic.*;
+import javafx.scene.paint.Color;
 import util.GameResult;
-import gameLogic.Piece;
-import gameLogic.Player;
-import gameLogic.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,22 +82,19 @@ public class GameController {
      */
     private int turn;
 
-    /**
-     * Indicates the row of the last {@link Piece} that was taken.
-     */
-    private int lastRow = -9;
-
-    /**
-     * Indicates the column of the last {@link Piece} that was taken.
-     */
-    private int lastColumn = -9;
+    Drawer drawer;
 
     /**
      * Initializes the game.
      */
     public void initialize(){
-        board = new Board();
+        player1 = new Player(new OnePiece(null));
+        player2 = new Player(new TwoPiece(null));
+
+        board = new Board(player1, player2);
+
         turn = 1;
+        drawer = new Drawer(gridPane);
         drawBoard();
 
         log.info("Game has started");
@@ -111,9 +107,11 @@ public class GameController {
      * @param player2 {@link Player} number two
      */
     public void initdata(String player1, String player2){
-        this.player1 = new Player(player1);
-        this.player2 = new Player(player2);
         log.info("{} vs {}",player1, player2);
+
+        this.player1.setName(player1);
+        this.player2.setName(player2);
+
         setNames();
     }
 
@@ -124,52 +122,17 @@ public class GameController {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 Circle circle = (Circle) gridPane.getChildren().get(i * 7 + j);
-                circle.setStroke(javafx.scene.paint.Paint.valueOf("black"));
+                circle.setStroke(Color.BLACK);
                 circle.setStrokeWidth(1.0);
 
-                if(board.getPieceAt(i,j).isTaken()){
+                Piece piece = board.getPieceAt(i, j);
+
+                if(piece.isTaken()) {
                     circle.setVisible(false);
-                } else {
-                    circle.setFill(board.getPieceAt(i,j).getPaint());
-
-                    if(isNeighbour(i, j)){
-                        circle.setStroke(javafx.scene.paint.Paint.valueOf("yellow"));
-                        circle.setStrokeWidth(3.0);
-                    }
-                }
+                } else
+                    drawer.draw(piece, circle);
             }
         }
-    }
-
-    /**
-     * Checks whether the game is finished.
-     * @return whether the game is finished
-     */
-    private boolean isFinished(){
-        int numberOfNeighbours = 0;
-        int numberOfRed = 0;
-        int numberOfBlue = 0;
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++) {
-                Circle circle = (Circle) gridPane.getChildren().get(i * 7 + j);
-
-                if(!board.getPieceAt(i,j).isTaken()){
-                    if(isColored(board.getPieceAt(i,j), "red"))
-                        numberOfRed++;
-
-                    if(isColored(board.getPieceAt(i,j), "blue"))
-                        numberOfBlue++;
-
-                    if(isNeighbour(i, j)) {
-                        circle.setStroke(javafx.scene.paint.Paint.valueOf("yellow"));
-                        circle.setStrokeWidth(3.0);
-                        numberOfNeighbours++;
-                    }
-                }
-            }
-        }
-
-        return turn != 1 && numberOfNeighbours == 0 || numberOfBlue == 0 || numberOfRed == 0;
     }
 
     /**
@@ -181,7 +144,7 @@ public class GameController {
         int row = GridPane.getRowIndex((Node)mouseEvent.getSource());
         int column = GridPane.getColumnIndex((Node)mouseEvent.getSource());
 
-        if(turn == 1 && board.getPieceAt(row, column).getPaint() == javafx.scene.paint.Paint.valueOf("green") || isNeighbour(row,column) && !isFinished()){
+        if(board.getPieceAt(row, column).isClickable() && !board.isFinished()){
             log.info("turn {}: ({},{}) circle was clicked", turn, row, column);
 
             if(turn % 2 ==  1){
@@ -190,10 +153,8 @@ public class GameController {
                 board.takePiece(row, column, player2);
 
             turn++;
-            lastRow = row;
-            lastColumn = column;
 
-            if(isFinished())
+            if(board.isFinished())
                 finishGame();
 
             updateState();
@@ -203,36 +164,11 @@ public class GameController {
     }
 
     /**
-     * Determines the winner of the game.
-     * @return the winner of the game
-     */
-    private Player determineWinner(){
-        if(player1.getNumberOfColor("blue") + player2.getNumberOfColor("blue") == 10 ||
-                player1.getNumberOfColor("red") + player2.getNumberOfColor("red") == 10){
-
-            if(board.getPieceAt(lastRow, lastColumn).getPaint() == javafx.scene.paint.Paint.valueOf("red"))
-                return player1;
-            if(board.getPieceAt(lastRow, lastColumn).getPaint() == javafx.scene.paint.Paint.valueOf("blue"))
-                return player2;
-        }
-
-        if(player1.getNumberOfColor("red") > player2.getNumberOfColor("blue")) {
-            return player1;
-        }
-        if(player1.getNumberOfColor("red") < player2.getNumberOfColor("blue")) {
-            return player2;
-        }
-
-
-        return null;
-    }
-
-    /**
      * Updates the scoreboard.
      */
     private void updateState(){
-        score1.setText(Integer.toString(player1.getNumberOfColor("red")));
-        score2.setText(Integer.toString(player2.getNumberOfColor("blue")));
+        score1.setText(Integer.toString(player1.getScore()));
+        score2.setText(Integer.toString(player2.getScore()));
         switchPlayer();
     }
 
@@ -268,7 +204,7 @@ public class GameController {
      * Ends the game, and saves results.
      */
     private void finishGame(){
-        Player winner = determineWinner();
+        Player winner = board.determineWinner();
 
         if(winner == null){
             winnerLabel.setText("The game is a tie!");
@@ -286,36 +222,6 @@ public class GameController {
             GsonHelper.appendToGson(result);
             log.info("game is finished, {} won", winner.getName());
         }
-
-
-
-
-    }
-
-    /**
-     * Checks if the given piece is the neighbour of the last taken one.
-     * @param row the row of the board where the piece is located
-     * @param column the column of the board where the piece is located
-     * @return determines if the pieces are neighbours
-     */
-    private boolean isNeighbour(int row, int column){
-        if(Math.abs(lastColumn - column) < 2 && Math.abs(lastRow - row) < 2)
-            return true;
-
-        return false;
-    }
-
-    /**
-     * Determines if the given {@link Piece} is given colored.
-     * @param piece the piece needs to be examined
-     * @param paint the color used for the examination
-     * @return whether the {@link Piece} is {@code paint}
-     */
-    private boolean isColored(Piece piece, String paint){
-        if(piece.getPaint().equals(javafx.scene.paint.Paint.valueOf(paint))){
-            return true;
-        }
-        return false;
     }
 
     /**
